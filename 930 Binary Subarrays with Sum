@@ -1,0 +1,25 @@
+M1-Hashing
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int n=nums.size();
+        unordered_map<int,int>mpp;
+        int res=0;
+        int currsum=0;
+        mpp[0]=1;
+        for(int &num : nums)
+        {
+            currsum+=num;
+
+            int remaining_sum=currsum-goal;
+            if(mpp.find(remaining_sum)!=mpp.end())
+            {
+                res+=mpp[remaining_sum];
+            }
+            mpp[currsum]++;
+        }
+        return res;
+    }
+};
+
+M2-Sliding window
